@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <title>Embodied Coaching</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: #fefefe;
+        }
+
+        /* Navigation Header */
+        .nav-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: -0.5px;
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: #4a4a4a;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #1a1a1a;
+        }
+
+        .nav-cta {
+            padding: 0.7rem 1.5rem;
+            background: #5E9099;
+            color: white !important;
+            border-radius: 3px;
+            font-weight: 400;
+        }
+
+        .nav-cta:hover {
+            background: #4FBCD1;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: #1a1a1a;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 3rem;
+            background: linear-gradient(to bottom, #f9f7f4 0%, #ffffff 100%);
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 300;
+            letter-spacing: -1px;
+            margin-bottom: 2rem;
+            color: #1a1a1a;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            line-height: 1.8;
+            color: #4a4a4a;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .hero .emphasis {
+            font-style: italic;
+            display: block;
+            margin-top: 2rem;
+            font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+            color: #2a2a2a;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .intro-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .intro-section h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 300;
+            letter-spacing: -1px;
+            margin-bottom: 2rem;
+            color: #1a1a1a;
+            line-height: 1.3;
+        }
+
+        .intro-section p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            line-height: 1.9;
+            color: #4a4a4a;
+            margin-bottom: 1.3rem;
+            font-weight: 300;
+        }
+
+        .intro-section .bold-statement {
+            font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+            font-weight: 400;
+            color: #2a2a2a;
+            margin-top: 2rem;
+        }
+
+        .services-section {
+            background: #f9f7f4;
+            padding: 6rem 2rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            line-height: 1.9;
+            color: #4a4a4a;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            text-align: center;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .service-card h3 {
+            font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+            font-weight: 400;
+            margin-bottom: 1.2rem;
+            color: #1a1a1a;
+            line-height: 1.4;
+        }
+
+        .service-card p {
+            font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+            color: #4a4a4a;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .service-card .label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #999;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .featured-program {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .featured-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .featured-content h2 {
+            font-size: clamp(2rem, 4.5vw, 3rem);
+            font-weight: 300;
+            letter-spacing: -1px;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+        }
+
+        .featured-content p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            line-height: 1.9;
+            color: #4a4a4a;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.1rem 2.8rem;
+            background: #5E9099;
+            color: white;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+            margin-top: 1.5rem;
+            border-radius: 3px;
+        }
+
+        .cta-button:hover {
+            background: #4FBCD1;
+            transform: translateY(-2px);
+        }
+
+        .free-resources {
+            background: #f9f7f4;
+            padding: 6rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header .subtitle {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #999;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 300;
+            letter-spacing: -1px;
+            color: #1a1a1a;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .resource-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        }
+
+        .resource-card h4 {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .resource-card p {
+            font-size: clamp(0.9rem, 1.8vw, 1rem);
+            color: #4a4a4a;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .philosophy-section {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .philosophy-content {
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .philosophy-content h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 300;
+            letter-spacing: -1px;
+            margin-bottom: 2rem;
+            color: #1a1a1a;
+            font-style: italic;
+        }
+
+        .philosophy-content p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            line-height: 1.9;
+            color: #4a4a4a;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .philosophy-content .closing {
+            font-size: clamp(1.1rem, 2.2vw, 1.25rem);
+            font-weight: 400;
+            color: #2a2a2a;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+
+        .contact-section {
+            padding: 6rem 2rem;
+            background: #f9f7f4;
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-content h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 300;
+            letter-spacing: -1px;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+        }
+
+        .contact-content p {
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            line-height: 1.8;
+            color: #4a4a4a;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .contact-info {
+            margin-top: 2.5rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+        }
+
+        .contact-info a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            word-break: break-word;
+        }
+
+        .contact-info a:hover {
+            color: #666;
+        }
+
+        footer {
+            background: #28201F;
+            color: #ccc;
+            text-align: center;
+            padding: 2.5rem 2rem;
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        /* Mobile Navigation */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem 1.5rem;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                padding: 2rem;
+                gap: 1.5rem;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                transform: translateY(-120%);
+                transition: transform 0.3s ease;
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+            }
+
+            .nav-menu a {
+                font-size: 1.1rem;
+            }
+
+            .hero {
+                padding: 6rem 1.5rem 3rem;
+                min-height: 70vh;
+            }
+
+            .services-grid,
+            .resources-grid {
+                gap: 1.5rem;
+            }
+
+            .service-card,
+            .resource-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .container,
+            .intro-section,
+            .services-section,
+            .featured-program,
+            .free-resources,
+            .philosophy-section,
+            .contact-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 0.9rem;
+                letter-spacing: 1px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+            }
+
+            .hero {
+                padding: 5rem 1rem 2rem;
+            }
+
+            .cta-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-header">
+        <div class="nav-container">
+            <a href="#home" class="logo">Embodied Coaching</a>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#philosophy">Why body?</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#method">About me</a></li>
+                <li><a href="#contact" class="nav-cta">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content" id="home">
+            <h1>Finally reconnect with your body with ease.</h1>
+            <p>You've done the self-help books. Tried the meditation apps. Got the breakthroughs. But behind the "progress" was a version of you constantly analyzing, pushing through discomfort, and missing out — not just on presence, but on life. You're done sacrificing your authenticity, your peace & your sense of self just to "be better" — but you're still allowed to want growth.</p>
+            <span class="emphasis">This is about building lasting self-trust and embodied presence that doesn't disappear when life gets messy.</span>
+        </div>
+    </div>
+
+    <div class="intro-section">
+        <h2>It's about reclaiming your relationship with your body.</h2>
+        <p>Through coaching, somatic practices, and movement, we'll integrate strategy with emotional support — so your transformation sticks, even when routines shift.</p>
+        <p>Because wellness should never mean self-sacrifice.</p>
+        <p class="bold-statement">And embodiment should never come at the cost of joy.</p>
+    </div>
+
+    <div class="services-section" id="services">
+        <div class="section-header">
+            <div class="subtitle">Services</div>
+        </div>
+        <p>I offer individual coaching sessions and group programs, available in-person and online.</p>
+        <br>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="label">1. Individual Session</div>
+                <a href="#services">
+                <img src="./images/image09.jpeg" alt="image09" style="width:100%">
+                </a>
+            </div>
+            <div class="service-card">
+                <div class="label">2. Short Meeting</div>
+                <a href="#services">
+                <img src="./images/image07.jpeg" alt="image07" style="width:100%">
+                </a>
+            </div>
+            <div class="service-card">
+                <div class="label">3. Session Package</div>
+                <a href="#services">
+                <img src="./images/image06.jpeg" alt="image06" style="width:100%">
+                </a>
+            </div>
+            <div class="service-card">
+                <div class="label">4. Embodiment Practice</div>
+                <a href="#services">
+                <img src="./images/image08.jpeg" alt="image08" style="width:100%">
+                </a>
+            </div>
+            <div class="service-card">
+                <div class="label">5. Embodiment in Groups</div>
+                <a href="#services">
+                <img src="./images/image07.jpeg" alt="image08" style="width:100%">
+                </a>
+            </div>
+            <div class="service-card">
+                <div class="label">6. For Couples</div>
+                <a href="#services">
+                <img src="./images/image07.jpeg" alt="image07" style="width:100%">
+                </a>
+            </div>         
+        </div>
+    </div>
+
+    <div class="philosophy-section" id="philosophy">
+        <div class="philosophy-content">
+            <div class="section-header">
+                <div class="subtitle">Philosophy</div>
+                <h2>Embody Your Truth</h2>
+            </div>
+            <p>This work isn't about chasing perfection—it's about reclaiming your body, your rhythm, and your power.</p>
+            <p>With grounded, honest conversations around presence, movement, emotions, and somatic healing, you'll start to reconnect to your body on every level — physical, emotional, and energetic.</p>
+            <p class="closing">Because when you understand yourself, you stop trying to fix your body — and start living in it.</p>
+        </div>
+    </div>    
+
+    <div class="free-resources" id="resources">
+        <div class="section-header">
+            <div class="subtitle">Free Resources</div>
+            <h2>Begin Your Journey</h2>
+        </div>
+        <div class="resources-grid">
+            <div class="resource-card">
+                <h4>Body Awareness Mini-Training</h4>
+                <p>Free mini-training + guided practice that teaches you how to recognize what your body is telling you — without overthinking or analyzing.</p>
+            </div>
+            <div class="resource-card">
+                <h4>Nervous System Reset</h4>
+                <p>A free training to help you understand what's really activating your stress response — and how to respond with presence instead of reaction.</p>
+            </div>
+            <div class="resource-card">
+                <h4>Somatic Practice Library</h4>
+                <p>Before the deep dive, sample the practice. These free tools give you a glimpse of what it's like to feel grounded, present, and at home in your body again — no forcing, no fixing.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="featured-program" id="method">
+        <div class="featured-content">
+            <div class="section-header">
+                <div class="subtitle">Method</div>
+                <h2>Embodied Presence Method</h2>
+            </div>
+            <p>A step-by-step approach to cultivating presence in your body—one that supports nervous system healing, releases stored tension, and helps you build sustainable practices. You'll learn how to listen to your body's signals, work with your energy wisely, and finally understand how emotions, sensations, and awareness work together.</p>
+            <p>It's not just a practice—it's a method that turns confusion into embodied clarity.</p>
+            <a href="#contact" class="cta-button">Learn More</a>
+        </div>
+    </div>    
+
+    <div class="contact-section" id="contact">
+        <div class="contact-content">
+            <div class="section-header">
+                <div class="subtitle">Contact / Book a Session</div>
+            </div>
+            <div class="contact-info">
+                <p><i class="fa-solid fa-envelope"></i>  <a href="mailto:mila.poletavkina@gmail.com">  mila.poletavkina@gmail.com</a></p>
+                <p><i class="fa-solid fa-phone"></i>  <a href="tel:+9 999 9999999">  +9 999 99999999</a></p>
+                <p><i class="fa-brands fa-telegram"></i>  <a href="mila.ploetavkina">  mila.poletavkina</a></p>
+                <p><i class="fa-solid fa-location-dot"></i>  <a href="Ljubliana">  Ljubliana / online</a></p>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Mila Poletavkina. Embodied Coaching Practice. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Fade-in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.hero-content, .service-card, .resource-card, .intro-section, .featured-content, .philosophy-content').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+            observer.observe(el);
+        });
+
+        // Hide/show nav on scroll
+        let lastScroll = 0;
+        const nav = document.querySelector('.nav-header');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
+            } else {
+                nav.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+            }
+
+            lastScroll = currentScroll;
+        });
+    </script>
+</body>
+</html>
