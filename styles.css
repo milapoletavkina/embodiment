@@ -194,6 +194,14 @@ body {
     text-align: left;
 }
 
+.intro-section-services .emphasis {
+    font-style: italic;
+    display: block;
+    margin-top: 2rem;
+    font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+    color: #2a2a2a;
+}
+
 .intro-section .bold-statement {
     font-size: clamp(1.1rem, 2.2vw, 1.3rem);
     font-weight: 400;
