@@ -63,3 +63,13 @@ window.addEventListener('scroll', () => {
 
     lastScroll = currentScroll;
 });
+
+// Enhanced touch support for mobile devices
+document.querySelectorAll('.col').forEach(col => {
+    col.addEventListener('click', function() {
+    if (window.innerWidth <= 768) {
+        const container = this.querySelector('.container');
+        container.classList.toggle('flipped');
+    }
+    });
+});
