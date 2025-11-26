@@ -220,6 +220,14 @@ body {
     text-align: center;
 }
 
+.services-section .emphasis {
+    font-style: italic;
+    display: block;
+    margin-top: 2rem;
+    font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+    color: #2a2a2a;
+}
+
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
@@ -543,19 +551,19 @@ body {
 
 /* Card background images */
 .front-1 {
-    background-image: url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=500');
+    background-image: url(./images/image05.jpeg);
 }
 
 .front-2 {
-    background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=500');
+    background-image: url(./images/image06.jpeg);
 }
 
 .front-3 {
-    background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500');
+    background-image: url(./images/image07.jpeg);
 }
 
 .front-4 {
-    background-image: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500');
+    background-image: url(./images/image08.jpeg);
 }
 
 /* Tablet styles */
