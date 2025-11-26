@@ -64,12 +64,10 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// Enhanced touch support for mobile devices
+// Click to flip cards on all devices
 document.querySelectorAll('.col').forEach(col => {
     col.addEventListener('click', function() {
-    if (window.innerWidth <= 768) {
-        const container = this.querySelector('.container');
-        container.classList.toggle('flipped');
-    }
+    const container = this.querySelector('.container');
+    container.classList.toggle('flipped');
     });
 });

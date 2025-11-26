@@ -433,13 +433,14 @@ body {
 
 .col {
     width: calc(50% - 1rem);
-    margin: 0.2rem;
+    margin: 0.5rem;
     cursor: pointer;
 }
 
 .container {
     transform-style: preserve-3d;
     perspective: 1000px;
+    position: relative;
 }
 
 .front,
@@ -453,14 +454,17 @@ body {
     text-align: center;
     min-height: 400px;
     height: auto;
-    border-radius: 10px;
     color: #fff;
     font-size: 1rem;
+    position: relative;
 }
 
 .back {
-    background: #cedce7;
     background: linear-gradient(45deg, #cedce7 0%, #596a72 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
 .front:after {
@@ -476,20 +480,6 @@ body {
     background-color: #000;
     backface-visibility: hidden;
     border-radius: 10px;
-}
-
-.container:hover .front,
-.container:hover .back {
-    transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
-}
-
-.back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    text-align: left;
-
 }
 
 .inner {
@@ -515,18 +505,18 @@ body {
     transform-style: preserve-3d;
 }
 
-.container:hover .back {
+.container.flipped .back {
     transform: rotateY(0deg);
     transform-style: preserve-3d;
 }
 
-.container:hover .front {
+.container.flipped .front {
     transform: rotateY(-180deg);
     transform-style: preserve-3d;
 }
 
 .front .inner p {
-    font-size: 1.2rem;
+    font-size: 2rem;
     margin-bottom: 2rem;
     position: relative;
 }
