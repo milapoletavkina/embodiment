@@ -586,6 +586,7 @@ body {
     .front,
     .back {
     min-height: 350px;
+    max-height: 600px;
     }
 
     .front .inner p {
