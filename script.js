@@ -64,10 +64,31 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// Click to flip cards on all devices
+// Expandable cards functionality
 document.querySelectorAll('.col').forEach(col => {
     col.addEventListener('click', function() {
-    const container = this.querySelector('.container');
-    container.classList.toggle('flipped');
+        const container = this.querySelector('.card-container');
+        
+        // Close all other cards
+        document.querySelectorAll('.card-container').forEach(otherContainer => {
+            if (otherContainer !== container) {
+                otherContainer.classList.remove('expanded');
+            }
+        });
+        
+        // Toggle current card
+        container.classList.toggle('expanded');
+        
+        // Smooth scroll to card if expanding
+        if (container.classList.contains('expanded')) {
+            setTimeout(() => {
+                const offset = 100;
+                const targetPosition = this.offsetTop - offset;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }, 100);
+        }
     });
 });
