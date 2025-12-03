@@ -612,11 +612,11 @@ body {
     .front,
     .back {
     min-height: 300px;
-    font-size: 1.2rem;
+    font-size: 1.0rem;
     }
 
     .front .inner p {
-    font-size: 1.25rem;
+    font-size: 1.0rem;
     margin-bottom: 1rem;
     }
 
