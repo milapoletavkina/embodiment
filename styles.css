@@ -229,19 +229,26 @@ body {
 }
 
 .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 2rem;
     max-width: 900px;
     margin: 0 auto;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .service-card {
     background: white;
-    padding: 2.5rem 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 15px rgba(0,0,0,0.06);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+    flex: 0 0 calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
+    display: flex;
+    flex-direction: column;
 }
 
 .service-card:hover {
@@ -249,7 +256,41 @@ body {
     box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 
-.service-card h3 {
+.service-card .label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #999;
+    font-weight: 500;
+    padding: 2rem 2rem 0 2rem;
+}
+
+.service-card-image {
+    padding: 0 2rem 2rem 2rem;
+}
+
+.service-card img {
+    width: 100%;
+    border-radius: 4px;
+}
+
+.service-card-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.5s ease;
+    background: #f9f7f4;
+}
+
+.service-card-content-inner {
+    padding: 0 2rem;
+}
+
+.service-card.expanded .service-card-content {
+    max-height: 1000px;
+    padding: 2rem 0;
+}
+
+.service-card-content h3 {
     font-size: clamp(1.3rem, 2.5vw, 1.6rem);
     font-weight: 400;
     margin-bottom: 1.2rem;
@@ -257,26 +298,39 @@ body {
     line-height: 1.4;
 }
 
-.service-card p {
-    font-size: clamp(0.95rem, 1.8vw, 1.05rem);
-    color: #4a4a4a;
+.service-card-content p {
+    font-size: 1rem;
     line-height: 1.8;
-    font-weight: 300;
-}
-
-.service-card .label {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #999;
     margin-bottom: 1rem;
-    font-weight: 500;
+    color: black;
 }
 
-.service-card img {
-    width: 100%;
-    border-radius: 4px;
-    margin-top: 1rem;
+.service-card-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .services-grid {
+        gap: 1.5rem;
+    }
+
+    .service-card {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .service-card .label {
+        padding: 1.5rem 1.5rem 0 1.5rem;
+    }
+
+    .service-card-image {
+        padding: 0 1.5rem 1.5rem 1.5rem;
+    }
+
+    .service-card-content-inner {
+        padding: 0 1.5rem;
+    }
 }
 
 .featured-program {

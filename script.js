@@ -64,7 +64,7 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// Expandable cards functionality
+// Expandable philosophy cards functionality
 document.querySelectorAll('.col').forEach(col => {
     col.addEventListener('click', function() {
         const container = this.querySelector('.card-container');
@@ -81,6 +81,38 @@ document.querySelectorAll('.col').forEach(col => {
         
         // Smooth scroll to card if expanding
         if (container.classList.contains('expanded')) {
+            setTimeout(() => {
+                const offset = 100;
+                const targetPosition = this.offsetTop - offset;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }, 100);
+        }
+    });
+});
+
+// Expandable service cards functionality
+document.querySelectorAll('.service-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+        // Don't expand if clicking on a link
+        if (e.target.tagName === 'A' || e.target.closest('a')) {
+            return;
+        }
+        
+        // Close all other service cards
+        document.querySelectorAll('.service-card').forEach(otherCard => {
+            if (otherCard !== card) {
+                otherCard.classList.remove('expanded');
+            }
+        });
+        
+        // Toggle current card
+        card.classList.toggle('expanded');
+        
+        // Smooth scroll to card if expanding
+        if (card.classList.contains('expanded')) {
             setTimeout(() => {
                 const offset = 100;
                 const targetPosition = this.offsetTop - offset;
