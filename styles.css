@@ -606,6 +606,14 @@ body {
     margin-bottom: 0;
 }
 
+.contact-image {
+    display: block;
+    width: clamp(200px, 35%, 300px);
+    margin: 0 auto 1.5rem auto; /* top left/right bottom left/right */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
 /* Tablet styles */
 @media (max-width: 1024px) {
     .col {
