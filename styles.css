@@ -653,7 +653,7 @@ body {
         padding: 0 1.5rem;
     }
     .featured-image{
-        width: clamp(200px, 25%, 300px);
+        width: clamp(100px, 25%, 300px);
     }
 }
 
