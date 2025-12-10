@@ -298,9 +298,18 @@ body {
     line-height: 1.4;
 }
 
+.service-card-content h4 {
+    font-size: clamp(1.1rem, 1.5vw, 1.1rem);
+    text-align: left;
+    font-weight: 400;
+    color: black;
+    line-height: 1.2;
+}
+
 .service-card-content p {
     font-size: 1rem;
-    line-height: 1.8;
+    text-align: left;
+    line-height: 1.5;
     margin-bottom: 1rem;
     color: black;
 }
