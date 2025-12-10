@@ -652,8 +652,9 @@ body {
     .card-content-inner {
         padding: 0 1.5rem;
     }
+    
     .featured-image{
-        width: clamp(100px, 25%, 300px);
+        width: clamp(150px, 35%, 300px);
     }
 }
 
@@ -677,6 +678,10 @@ body {
 
     .card-content p {
         font-size: 0.95rem;
+    }
+
+    .featured-image{
+        width: clamp(100px, 25%, 300px);
     }
 }
 
