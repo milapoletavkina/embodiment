@@ -360,6 +360,21 @@ body {
     font-weight: 300;
 }
 
+.featured-image {
+    float: right;
+    width: clamp(200px, 35%, 300px);
+    margin: 0 0 1.5rem 2rem; /* top right bottom left */
+    border-radius: 8px; /* optional */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* optional */
+}
+
+/* Clear floats after the content */
+.featured-content::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 .cta-button {
     display: inline-block;
     padding: 1.1rem 2.8rem;
