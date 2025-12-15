@@ -124,3 +124,14 @@ document.querySelectorAll('.service-card').forEach(card => {
         }
     });
 });
+
+document.querySelectorAll('.resource-card').forEach(card => {
+  const link = card.getAttribute('data-link');
+  if (link) {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+      window.open(link, '_blank'); // Opens in new tab
+      // OR: window.location.href = link; // Opens in same tab
+    });
+  }
+});

@@ -505,7 +505,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
     gap: 2rem;
 }
