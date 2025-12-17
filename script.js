@@ -131,7 +131,16 @@ document.querySelectorAll('.resource-card').forEach(card => {
     card.style.cursor = 'pointer';
     card.addEventListener('click', () => {
       window.open(link, '_blank'); // Opens in new tab
-      // OR: window.location.href = link; // Opens in same tab
+    });
+  }
+});
+
+document.querySelectorAll('.service-card2').forEach(card => {
+  const link = card.getAttribute('data-link');
+  if (link) {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+      window.open(link, '_blank'); // Opens in new tab
     });
   }
 });
