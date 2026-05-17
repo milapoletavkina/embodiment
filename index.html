@@ -1,338 +1,395 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Embodied Coaching – профессиональный сайт эмбодимент-коучинга Милы Полетавкиной.">
-    <meta name="keywords" content="Телесно-ориентированный коучинг, эмбодимент, Осознанность, Embodied Coaching, Embodiment Coaching, Embodiment">
-    <meta name="author" content="Mila Poletavkina">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Mila Poletavkina" />
+  <meta name="description" content="Embodied Coaching – профессиональный сайт эмбодимент-коучинга Милы Полетавкиной." />
+  <title>Embodied Coaching – Мила Полетавкина</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>Embodied Coaching – Главная</title>
+    :root {
+      --cream: #f5f0e8;
+      --warm-dark: #1c1a17;
+      --stone: #7a7060;
+      --accent: #8b6f47;
+      --border: rgba(122,112,96,0.25);
+      --section-gap: 6rem;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--warm-dark);
+      font-weight: 300;
+      line-height: 1.75;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 2.5rem;
+      background: rgba(245,240,232,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 400; letter-spacing: 0.04em;
+      text-decoration: none; color: var(--warm-dark);
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--stone);
+      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .lang-switch {
+      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--stone); text-decoration: none; border-bottom: 1px solid var(--border);
+      padding-bottom: 1px; transition: color 0.2s;
+    }
+    .lang-switch:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100svh;
+      display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+      padding: 8rem 2.5rem 4rem;
+      gap: 4rem;
+    }
+    .hero-text h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      font-weight: 300; line-height: 1.15;
+      margin-bottom: 2rem; letter-spacing: 0.01em;
+    }
+    .hero-text h1 em { font-style: italic; color: var(--accent); }
+    .hero-text p { color: var(--stone); font-size: 1rem; max-width: 42ch; margin-bottom: 1.2rem; }
+    .hero-cta {
+      display: inline-block; margin-top: 1.5rem;
+      padding: 0.85rem 2.2rem;
+      border: 1px solid var(--accent);
+      color: var(--accent); text-decoration: none;
+      font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase;
+      transition: background 0.25s, color 0.25s;
+    }
+    .hero-cta:hover { background: var(--accent); color: var(--cream); }
+    .hero-image { position: relative; }
+    .hero-image img {
+      width: 100%; aspect-ratio: 3/4; object-fit: cover;
+      display: block;
+    }
+    .hero-image::before {
+      content: '';
+      position: absolute; inset: -12px -12px 12px 12px;
+      border: 1px solid var(--border); z-index: -1;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: var(--section-gap) 2.5rem; }
+    section + section { border-top: 1px solid var(--border); }
+
+    .section-label {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.2rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 300; line-height: 1.2;
+      margin-bottom: 2rem;
+    }
+    .section-body { color: var(--stone); max-width: 68ch; }
+    .section-body p + p { margin-top: 1rem; }
+
+    /* ── TWO-COL LAYOUT ── */
+    .two-col {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: start;
+    }
+    .two-col-reverse { direction: rtl; }
+    .two-col-reverse > * { direction: ltr; }
+    .col-image img {
+      width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block;
+    }
+
+    /* ── SERVICE CARD ── */
+    #services .service-card {
+      background: var(--warm-dark); color: var(--cream);
+      padding: 3rem;
+      max-width: 700px; margin: 3rem auto 0;
+    }
+    .service-card .section-label { color: #c8aa82; }
+    .service-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; font-weight: 300; margin-bottom: 1.5rem;
+    }
+    .service-card ul {
+      list-style: none; margin: 1.2rem 0 2rem;
+    }
+    .service-card ul li {
+      padding: 0.4rem 0;
+      padding-left: 1.2rem;
+      position: relative;
+      color: rgba(245,240,232,0.8); font-size: 0.95rem;
+    }
+    .service-card ul li::before {
+      content: '—'; position: absolute; left: 0; color: #c8aa82;
+    }
+    .price-block {
+      display: flex; align-items: baseline; gap: 0.5rem;
+      margin: 1.5rem 0 2rem;
+      border-top: 1px solid rgba(245,240,232,0.15);
+      padding-top: 1.5rem;
+    }
+    .price-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem; font-weight: 300; color: #c8aa82;
+    }
+    .price-label { color: rgba(245,240,232,0.6); font-size: 0.85rem; }
+    .service-meta { font-size: 0.82rem; color: rgba(245,240,232,0.5); margin-bottom: 2rem; }
+    .btn-light {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      border: 1px solid rgba(245,240,232,0.4);
+      color: var(--cream); text-decoration: none;
+      font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase;
+      transition: background 0.25s;
+    }
+    .btn-light:hover { background: rgba(245,240,232,0.1); }
+
+    /* ── PHILOSOPHY BULLETS ── */
+    .pillars {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 2rem; margin-top: 3rem;
+    }
+    .pillar {
+      padding: 1.8rem;
+      border: 1px solid var(--border);
+    }
+    .pillar-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; color: var(--border); line-height: 1;
+      margin-bottom: 0.8rem;
+    }
+    .pillar h4 {
+      font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 0.6rem; color: var(--accent);
+    }
+    .pillar p { font-size: 0.9rem; color: var(--stone); }
+
+    /* ── ABOUT ── */
+    #about blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 300; font-style: italic;
+      color: var(--accent); line-height: 1.4;
+      border-left: 2px solid var(--accent);
+      padding-left: 1.5rem;
+      margin: 2.5rem 0;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--warm-dark); color: var(--cream); }
+    #contact .section-title { color: var(--cream); }
+    #contact .section-label { color: #c8aa82; }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; margin-top: 3rem; align-items: start;
+    }
+    .contact-img img {
+      width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block;
+    }
+    .contact-info { color: rgba(245,240,232,0.75); }
+    .contact-info p { margin-bottom: 0.5rem; }
+    .contact-links { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.8rem; }
+    .contact-links a {
+      color: rgba(245,240,232,0.75); text-decoration: none;
+      font-size: 0.9rem; display: flex; align-items: center; gap: 0.7rem;
+      transition: color 0.2s;
+    }
+    .contact-links a:hover { color: #c8aa82; }
+    .contact-links .icon {
+      width: 1.2rem; text-align: center; opacity: 0.6;
+    }
+    .btn-tg {
+      display: inline-block; margin-top: 2.5rem;
+      padding: 0.9rem 2.4rem;
+      background: #c8aa82; color: var(--warm-dark);
+      text-decoration: none; font-size: 0.8rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 500; transition: opacity 0.2s;
+    }
+    .btn-tg:hover { opacity: 0.85; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 2rem;
+      font-size: 0.75rem; color: var(--stone);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 800px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-links { display: none; }
+      #home { grid-template-columns: 1fr; min-height: auto; padding-top: 6rem; gap: 2.5rem; }
+      .hero-image { display: none; }
+      .two-col, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .two-col-reverse { direction: ltr; }
+      section { padding: 3.5rem 1.2rem; }
+      #services .service-card { padding: 2rem 1.4rem; }
+    }
+  </style>
 </head>
-
 <body>
-    <nav class="nav-header">
-        <div class="nav-container">
-            <a href="#home" class="logo">Embodied Coaching</a>
-            <div class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#services">Услуги</a></li>
-                <li><a href="#philosophy">Философия</a></li>
-                <li><a href="#resources">Ресурсы</a></li>
-                <li><a href="#about">Обо мне</a></li>
-                <li><a href="#contact" class="nav-cta">Контакты</a></li>
-                <a href="./en/index.html" class="lang-toggle">English</a>
-            </ul>
-        </div>
-    </nav>
 
-    <div class="hero" id="home">
-        <div class="hero-content">
-            <h1>Осознанность. Выбор. Действие.</h1>
-            <p>Наше тело создаёт определённые возможности в жизни — и ограничивает другие.
-            Эмбодимент-коучинг помогает ясно понять, что действительно является вашим ограничением, а где для вас открывается новая свобода.
-            <br><br>
-            Эмбодимент — это осознанность, проживаемая через тело.
-            Это не теория — это ваш личный, соматический опыт.</p>
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#home">Embodied Coaching</a>
+  <ul class="nav-links">
+    <li><a href="#services">Сессия</a></li>
+    <li><a href="#philosophy">Философия</a></li>
+    <li><a href="#about">Обо мне</a></li>
+    <li><a href="#contact">Контакты</a></li>
+  </ul>
+  <a class="lang-switch" href="en/index.html">English</a>
+</nav>
 
-            <span class="emphasis">Для тех, кто готов замечать, чувствовать, регулировать, выбирать и трансформироваться — через тело и в теле.</span>
-        </div>
+<!-- HERO -->
+<section id="home">
+  <div class="hero-text">
+    <p class="section-label">Эмбодимент-коучинг</p>
+    <h1>Осознанность.<br/><em>Выбор.</em><br/>Действие.</h1>
+    <p>Наше тело создаёт определённые возможности в жизни — и ограничивает другие. Эмбодимент-коучинг помогает ясно понять, что действительно является вашим ограничением, а где для вас открывается новая свобода.</p>
+    <p>Эмбодимент — это осознанность, проживаемая через тело. Это не теория — это ваш личный, соматический опыт.</p>
+    <a class="hero-cta" href="#services">Записаться на сессию</a>
+  </div>
+  <div class="hero-image">
+    <img src="images/image_15_s.jpeg" alt="Embodied Coaching" />
+  </div>
+</section>
+
+<!-- SERVICE -->
+<section id="services">
+  <p class="section-label">Услуги</p>
+  <h2 class="section-title">Индивидуальная сессия</h2>
+  <p class="section-body">Соматический коучинг и поддержка нервной системы, направленные на ваши цели и запросы.</p>
+
+  <div class="service-card">
+    <p class="section-label">Формат · Онлайн · 60 мин</p>
+    <h3>Индивидуальная коуч-сессия</h3>
+    <p style="color:rgba(245,240,232,0.7); font-size:0.95rem;">Подойдёт вам, если вы хотите:</p>
+    <ul>
+      <li>чувствовать себя безопасно в своём теле</li>
+      <li>восстановить энергию и ясность</li>
+      <li>выйти из режима выживания к осознанному выбору</li>
+      <li>регулировать нервную систему и эмоциональный поток</li>
+      <li>укрепить связь с телом и доверие к ощущениям</li>
+    </ul>
+    <div class="price-block">
+      <span class="price-num">20 €</span>
+      <span class="price-label">/ час</span>
     </div>
+    <p class="service-meta">Онлайн · Люблянa или по договорённости очно</p>
+    <a class="btn-light" href="#contact">Записаться</a>
+  </div>
+</section>
 
-    <div class="services-section" id="services">
-        <div class="section-header">
-            <div class="subtitle">Услуги</div>
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="two-col">
+    <div class="col-text">
+      <p class="section-label">Философия</p>
+      <h2 class="section-title">Тело — это<br/>точка входа</h2>
+      <div class="section-body">
+        <p>То, что мы по-настоящему чувствуем, живёт в теле. Эмбодимент — это единство тела и разума, позволяющее переживать себя через соматический опыт, а не только через мысли.</p>
+        <p>Стресс проявляется прежде всего в теле — через напряжение, дыхание, осанку и усталость. Работа с телом позволяет прийти к подлинным изменениям, а не только к осознанию.</p>
+        <p>Эмбодимент — это не абстрактная техника; это живой опыт, который можно интегрировать в обычную жизнь. Это то, КАК мы проживаем каждый момент.</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-num">01</div>
+          <h4>Регуляция</h4>
+          <p>Успокоение нервной системы и восстановление внутренних ресурсов.</p>
         </div>
-        <p class="emphasis">Я предлагаю индивидуальные коуч-сессии и групповые программы, доступные онлайн и очно.</p>
-        <br>
-
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="label">Индивидуальная сессия</div>
-                <br>
-                <div class="service-card-image">
-                    <img src="./images/image_15_s.jpeg" alt="image09">
-                    <p>Персональный эмбодимент-коучинг, основанный на ваших целях и запросах.</p>
-                </div>
-
-                <div class="service-card-content">
-                    <div class="service-card-content-inner">
-                        <h3>Индивидуальная коуч-сессия</h3>
-
-                        <p>Соматический коучинг и поддержка нервной системы</p>
-
-                        <p>Подойдёт вам, если вы хотите:<br>
-                        • чувствовать себя безопасно в своём теле<br>
-                        • восстановить энергию и ясность<br>
-                        • выйти из режима выживания к осознанному выбору</p>
-
-                        <p>Мы фокусируемся на:<br>
-                        • Регуляции — успокоение нервной системы<br>
-                        • Границах — оставаться верным себе<br>
-                        • Эмоциональном потоке — чувствовать без перегрузки<br>
-                        • Связи с телом — доверять ощущениям<br>
-                        • Энергии — что истощает / что восстанавливает</p>
-
-                        <h4>Формат:</h4>
-                        <p>60 мин • Онлайн</p>
-
-                        <h4>Стоимость:</h4>
-                        <p>7000р / сессия<br>
-                        18000р / пакет из 3 сессий (предоплата)</p>
-                        <h3><a href="#contact" class="cta-button">Записаться</a></h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <div class="label">Короткая встреча</div>
-                <br>
-                <div class="service-card-image">
-                    <img src="./images/image_19_s.jpeg" alt="image07">
-                    <p>Короткая сфокусированная встреча для решения конкретного вопроса или практики.</p>
-                </div>
-                <div class="service-card-content">
-                    <div class="service-card-content-inner">
-                        <h3>Короткая консультация</h3>
-                        <p>Идеально подходит тем, кто уже знаком с методом и хочет быстрый фидбек или поддержку в конкретной соматической практике или ситуации.</p>
-                        <p>Эти короткие встречи дают гибкость и доступность для регулярной поддержки.</p>
-                        
-                        <h4>Формат:</h4>
-                        <p>30 мин • Онлайн</p>
-
-                        <h4>Стоимость:</h4>
-                        <p>3500р / сессия</p>
-                        <h3><a href="#contact" class="cta-button">Записаться</a></h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <div class="label">Эмбодимент в группах</div>
-                <br>
-                <div class="service-card-image">
-                    <img src="./images/image_17_s.jpeg" alt="image05">
-                    <p>Проживание эмбодимента в поддерживающем групповом пространстве.</p>
-                </div>
-                <div class="service-card-content">
-                    <div class="service-card-content-inner">
-                        <h3>Групповые программы</h3>
-                        <p>Программы сочетают практики, совместный опыт и групповое обучение для углубления соматической осознанности.</p>
-                        <p>Групповая работа даёт уникальную возможность видеть путь других и исследовать свой собственный, создавая пространство роста и связи.</p>
-                        
-                        <h4>Формат:</h4>
-                        <p>1 – 2 часа / Онлайн</p>
-
-                        <h4>Стоимость:</h4>
-                        <p>1500р с человека / 6–8 участников / онлайн<br>
-                        2500р с человека / 6–8 участников / очно<br>
-                        Для больших групп стоимость зависит от аренды помещения.</p>
-                        <h3><a href="#contact" class="cta-button">Записаться</a></h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <div class="label">Для пар</div>
-                <br>
-                <div class="service-card-image">
-                    <img src="./images/image_18_s.jpeg" alt="image10">
-                    <p>Мягкая практика эмбодимента для пар.</p>
-                </div>
-                <div class="service-card-content">
-                    <div class="service-card-content-inner">
-                        <h3>💞 Эмбодимент-практика для пар</h3>
-                        <p>Нежная телесно-ориентированная практика, созданная для пар, которые хотят восстановить связь, мягкость и естественную интимность.</p>
-
-                        <p>Сессия подходит вам, если вы чувствуете, что тепло ослабло, связь стала менее живой, или если вы хотите большей глубины присутствия друг с другом.</p>
-                        <p>Вместо анализа или попыток «исправить» что-то, вы исследуете вашу связь через дыхание, внимание и телесную осознанность.</p>
-                        
-                        <h4>Формат:</h4>
-                        <p>60 мин</p>
-
-                        <h4>Стоимость:</h4>
-                        <p>10000р / сессия</p>
-                        <h3><a href="#contact" class="cta-button">Записаться</a></h3>
-                    </div>
-                </div>
-            </div>
+        <div class="pillar">
+          <div class="pillar-num">02</div>
+          <h4>Границы</h4>
+          <p>Оставаться верным себе, не теряя связи с другими.</p>
         </div>
+        <div class="pillar">
+          <div class="pillar-num">03</div>
+          <h4>Присутствие</h4>
+          <p>Доверять ощущениям и чувствовать без перегрузки.</p>
+        </div>
+      </div>
     </div>
-
-    <div class="philosophy-section" id="philosophy">
-        <div class="philosophy-content">
-            <div class="section-header">
-                <div class="subtitle">Философия</div>
-            </div>
-            <p class="closing">То, что мы по-настоящему чувствуем, живёт в теле.<br>
-            Отсюда начинается работа с эмбодиментом.</p>
-        </div>
-
-        <br>
-
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="label">Почему тело?</div>
-                <br>
-                <div class="service-card-image">
-                    <img src="./images/image_11_s.jpeg" href="#contact" alt="image11">
-                    <p>Эмбодимент — это единство тела и разума, позволяющее переживать себя через соматический опыт, а не только через мысли.</p>
-                </div>
-                <div class="service-card-content">
-                    <div class="service-card-content-inner">
-                        <h3><a href="./philosophy.html#whybody" class="cta-button">Узнать больше</a></h3>
-                    </div>
-                </div>            
-            </div>
-
-            <div class="service-card">
-                <div class="label">Соматическая осознанность в повседневной жизни</div>
-                <br>
-                <div class="service-card-image">
-                    <img src="./images/image_23_s.jpeg" alt="image23">
-                    <p>Эмбодимент — это не абстрактная техника; это живой опыт, который можно интегрировать в обычную жизнь.</p>
-                </div>
-                <div class="service-card-content">
-                    <div class="service-card-content-inner">
-                        <h3><a href="./philosophy.html#somaticawareness" class="cta-button">Узнать больше</a></h3>
-                    </div>
-                </div>  
-            </div>
-
-            <div class="service-card">
-                <div class="label">Стресс и тело: почему эмбодимент помогает</div>
-                <br>
-                <div class="service-card-image">
-                    <img src="./images/image_12_s.jpeg" alt="image12">
-                    <p>Стресс проявляется прежде всего в теле — через напряжение, дыхание, осанку и усталость.</p>
-                </div>
-                <div class="service-card-content">
-                    <div class="service-card-content-inner">
-                        <h3><a href="./philosophy.html#stressandbody" class="cta-button">Узнать больше</a></h3>
-                    </div>
-                </div> 
-            </div>
-
-            <div class="service-card">
-                <div class="label">Учёт ресурсов<br>Эмбодимент — это КАК</div>
-                <br>
-                <div class="service-card-image">
-                        <img src="./images/image_22_s.jpeg" alt="image22">
-                        <p>Эмбодимент — это не теория; это ваш личный, проживаемый соматический опыт.</p>
-                </div>
-                <div class="service-card-content">
-                    <div class="service-card-content-inner">
-                        <h3><a href="./philosophy.html#resourceaccounting" class="cta-button">Узнать больше</a></h3>
-                    </div>
-                </div> 
-            </div>
-
-        </div>  
-    </div>  
-
-    <div class="free-resources" id="resources">
-        <div class="section-header">
-            <div class="subtitle">Бесплатные ресурсы</div>
-            <h2>Начните свой путь</h2>
-        </div>
-        <div class="resources-grid">
-            <div class="resource-card" data-link="https://digitalwellbeing.org/wp-content/uploads/2015/11/2010-Embodiment-as-a-unifying-perspective-for-psychology.pdf">
-                <h4>Эмбодимент как объединяющая перспектива для психологии</h4>
-                <p>Психологические процессы в области познания, эмоций и поведения формируются сенсорными, моторными и эмоциональными системами тела, предлагая рамку для объединения различных направлений психологии.</p>
-            </div>
-            <div class="resource-card"  data-link="https://emilygibsontherapy.com/embodiment-resources-emily-gibson-ms-lpcc">
-                <h4>Ресурсы и блог об эмбодименте от Эмили Гибсон</h4>
-                <p>Бесплатные статьи о концепциях эмбодимента, практиках самосознания и связи между телом и психикой с точки зрения эрготерапии.</p>
-            </div>
-            <div class="resource-card" data-link="https://monoskop.org/images/2/21/Varela_Thompson_Rosch_The_Embodied_Mind_Cognitive_Science_and_Human_Experience_1991.pdf">
-                <h4>Воплощённый ум: когнитивная наука и человеческий опыт</h4>
-                <p>Междисциплинарное изложение познания, объединяющее когнитивную науку, феноменологию и буддийскую философию, чтобы показать, как разум и опыт возникают из воплощённого, ситуированного действия, а не из абстрактных ментальных представлений.</p>
-            </div>
-        </div>
+    <div class="col-image">
+      <img src="images/image_11_s.jpeg" alt="Философия эмбодимента" />
     </div>
+  </div>
+</section>
 
-    <div class="featured-program" id="about">
-        <div class="featured-content">
-            <div class="section-header">
-                <div class="subtitle">Обо мне</div>
-            </div>
-            <img src="./images/image_13_s.jpeg" alt="Mila" class="featured-image">
-            <p>Здравствуйте, меня зовут Мила, и я — эмбодимент-коуч.</p>
-            <h3>Моя профессиональная сила — видеть человека во всей его многогранности и подбирать телесные практики под его цели.</h3> 
-            <br>
-            <p>В прошлой профессии я 10 лет работала в Москве инженером-конструктором, была частью команды, создающей сложные архитектурные проекты. Дедлайны, переработки, стресс, выгорание и ощущение отсутствия внутренних ресурсов для полноценной жизни были мне хорошо знакомы.<br><br>
-Я также прожила опыт поддержки моей мамы во время лечения от рака — и её полного восстановления.<br>
-Я знаю, что значит переехать в другую страну, прожить 10 лет интеграции в новую культуру и поддерживать свою семью в вызовах адаптации.<br><br>
-Как и многие в период пандемии, я начала искать новый смысл и направление. Я прошла переподготовку, развод с акцентом на уважительное со-родительство, долгие периоды невозможности увидеть семью в России, финансовую нестабильность, работу на иностранном языке с одним выходным в неделю и потерю важных отношений.<br><br>
-Всё это проживалось через тело.<br>
-И мой путь не был бы таким осознанным без различных обучений — в общей психологии, психосоматике, гипнозе и нескольких эмбодимент- и телесно-ориентированных практиках.<br><br>
-Я уверенно могу сказать: каждое наше состояние — грусть или радость — прямо отражается в теле. Такова наша природа.<br>
-Но умение выбирать, как мы хотим проживать каждый жизненный опыт — это навык, который можно развивать, и который действительно важен.<br><br>
-Эмбодимент-коуч — это специалист, работающий через внимание к телу.<br>
-Я приглашаю вас в глубокое, интересное и значимое исследование себя.</p>
-        </div>
-    </div>    
-
-    <div class="contact-section" id="contact">
-        <div class="contact-content">
-            <div class="section-header">
-                <div class="subtitle">Контакты / Запись на сессию</div>
-            </div>
-            <div class="contact-info">
-                <p>Мила Полетавкина</p>
-                <img src="./images/image_14.jpeg" alt="contact_mila" class="contact-image">
-
-                <p><i class="fa-solid fa-location-dot"></i>   Любляна / онлайн</p>
-                <br>
-            </div>
-        </div>
-
-        <div class="button-group">
-            <!-- Email Button -->
-            <a href="mailto:mila.poletavkina@gmail.com" class="contact-button email-btn" data-tooltip="Email">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                </svg>
-            </a>
-
-            <!-- Telegram Button -->
-            <a href="https://t.me/milasession" target="_blank" rel="noopener noreferrer" class="contact-button telegram-btn" data-tooltip="Telegram">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
-                </svg>
-            </a>
-
-            <!-- WhatsApp Button -->
-            <a href="https://wa.me/79629556409" target="_blank" rel="noopener noreferrer" class="contact-button whatsapp-btn" data-tooltip="WhatsApp">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                </svg>
-            </a>
-
-            <!-- VKontakte Button -->
-            <a href="https://vk.com/id122408293" target="_blank" rel="noopener noreferrer" class="contact-button vk-btn" data-tooltip="VKontakte">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.183 14.285h-1.38c-.48 0-.625-.384-1.485-1.264-.75-.735-1.08-.826-1.26-.826-.27 0-.345.075-.345.435v1.155c0 .315-.09.495-1.005.495-1.485 0-3.135-.9-4.29-2.58-1.725-2.46-2.196-4.32-2.196-4.695 0-.18.075-.345.435-.345h1.38c.33 0 .45.15.57.495.675 1.98 1.8 3.72 2.265 3.72.165 0 .255-.075.255-.495v-1.935c-.06-.99-.585-1.08-.585-1.425 0-.135.12-.27.3-.27h2.16c.27 0 .375.15.375.48v2.61c0 .27.12.375.21.375.165 0 .3-.105.6-.405 1.11-1.245 1.905-3.165 1.905-3.165.105-.21.255-.345.585-.345h1.38c.405 0 .495.21.405.495-.18.885-1.92 3.51-1.92 3.51-.135.225-.18.33 0 .585.135.195.57.555 0.855.885.555.615 0.99 1.125 1.095 1.485.12.36-.075.54-.48.54z"/>
-                </svg>
-            </a>
-        </div>
-        <br>
-
-        <a href="https://t.me/milasession" class="cta-button">Связаться в Telegram</a>
-
+<!-- ABOUT -->
+<section id="about">
+  <div class="two-col two-col-reverse">
+    <div class="col-image">
+      <img src="images/image_13_s.jpeg" alt="Мила Полетавкина" />
     </div>
+    <div class="col-text">
+      <p class="section-label">Обо мне</p>
+      <h2 class="section-title">Мила<br/>Полетавкина</h2>
+      <blockquote>Моя профессиональная сила — видеть человека во всей его многогранности и подбирать телесные практики под его цели.</blockquote>
+      <div class="section-body">
+        <p>В прошлой профессии я 10 лет работала в Москве инженером-конструктором, и мне хорошо знакомы дедлайны, выгорание и ощущение отсутствия внутренних ресурсов.</p>
+        <p>Я прожила переезд в другую страну, 10 лет интеграции в новую культуру, поддержку близких в сложных жизненных ситуациях — всё это через тело.</p>
+        <p>Мой путь через общую психологию, психосоматику и телесно-ориентированные практики привёл меня к эмбодимент-коучингу. Каждое наше состояние — грусть или радость — прямо отражается в теле. Умение выбирать, как мы хотим проживать каждый опыт — это навык, который можно развить.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <footer>
-        <p>&copy; 2025 Mila Poletavkina. Практика Embodied Coaching. Все права защищены.</p>
-    </footer>
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Контакты · Запись на сессию</p>
+  <h2 class="section-title">Свяжитесь со мной</h2>
+  <div class="contact-grid">
+    <div class="contact-img">
+      <img src="images/image_14.jpeg" alt="Мила Полетавкина — контакты" />
+    </div>
+    <div class="contact-info">
+      <p style="font-size:1.05rem; margin-bottom:1rem; color:rgba(245,240,232,0.9);">Мила Полетавкина<br/>Люблянa / онлайн</p>
+      <p>Буду рада ответить на вопросы и договориться о времени сессии.</p>
+      <div class="contact-links">
+        <a href="mailto:mila.poletavkina@gmail.com">
+          <span class="icon">✉</span> mila.poletavkina@gmail.com
+        </a>
+        <a href="https://t.me/milasession" target="_blank" rel="noopener">
+          <span class="icon">✈</span> Telegram: @milasession
+        </a>
+        <a href="https://wa.me/79629556409" target="_blank" rel="noopener">
+          <span class="icon">◎</span> WhatsApp
+        </a>
+        <a href="https://vk.com/id122408293" target="_blank" rel="noopener">
+          <span class="icon">◈</span> ВКонтакте
+        </a>
+      </div>
+      <a class="btn-tg" href="https://t.me/milasession" target="_blank" rel="noopener">Написать в Telegram</a>
+    </div>
+  </div>
+</section>
 
-    <script src="script.js"></script>
+<footer>
+  © 2025 Mila Poletavkina. Практика Embodied Coaching. Все права защищены.
+</footer>
 
 </body>
 </html>

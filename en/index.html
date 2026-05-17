@@ -1,338 +1,395 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Embodied Coaching - Embodiment coaching professional website of Mila Poletavkina.">
-    <meta name="keywords" content="Embodied Coaching, Embodiment Coaching, Embodiment">
-    <meta name="author" content="Mila Poletavkina">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Mila Poletavkina" />
+  <meta name="description" content="Embodied Coaching – professional embodiment coaching by Mila Poletavkina." />
+  <title>Embodied Coaching – Mila Poletavkina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>Embodied Coaching - Home</title>
+    :root {
+      --cream: #f5f0e8;
+      --warm-dark: #1c1a17;
+      --stone: #7a7060;
+      --accent: #8b6f47;
+      --border: rgba(122,112,96,0.25);
+      --section-gap: 6rem;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--warm-dark);
+      font-weight: 300;
+      line-height: 1.75;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 2.5rem;
+      background: rgba(245,240,232,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 400; letter-spacing: 0.04em;
+      text-decoration: none; color: var(--warm-dark);
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--stone);
+      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .lang-switch {
+      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--stone); text-decoration: none; border-bottom: 1px solid var(--border);
+      padding-bottom: 1px; transition: color 0.2s;
+    }
+    .lang-switch:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100svh;
+      display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+      padding: 8rem 2.5rem 4rem;
+      gap: 4rem;
+    }
+    .hero-text h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      font-weight: 300; line-height: 1.15;
+      margin-bottom: 2rem; letter-spacing: 0.01em;
+    }
+    .hero-text h1 em { font-style: italic; color: var(--accent); }
+    .hero-text p { color: var(--stone); font-size: 1rem; max-width: 42ch; margin-bottom: 1.2rem; }
+    .hero-cta {
+      display: inline-block; margin-top: 1.5rem;
+      padding: 0.85rem 2.2rem;
+      border: 1px solid var(--accent);
+      color: var(--accent); text-decoration: none;
+      font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase;
+      transition: background 0.25s, color 0.25s;
+    }
+    .hero-cta:hover { background: var(--accent); color: var(--cream); }
+    .hero-image { position: relative; }
+    .hero-image img {
+      width: 100%; aspect-ratio: 3/4; object-fit: cover;
+      display: block;
+    }
+    .hero-image::before {
+      content: '';
+      position: absolute; inset: -12px -12px 12px 12px;
+      border: 1px solid var(--border); z-index: -1;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: var(--section-gap) 2.5rem; }
+    section + section { border-top: 1px solid var(--border); }
+
+    .section-label {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.2rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 300; line-height: 1.2;
+      margin-bottom: 2rem;
+    }
+    .section-body { color: var(--stone); max-width: 68ch; }
+    .section-body p + p { margin-top: 1rem; }
+
+    /* ── TWO-COL LAYOUT ── */
+    .two-col {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: start;
+    }
+    .two-col-reverse { direction: rtl; }
+    .two-col-reverse > * { direction: ltr; }
+    .col-image img {
+      width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block;
+    }
+
+    /* ── SERVICE CARD ── */
+    #services .service-card {
+      background: var(--warm-dark); color: var(--cream);
+      padding: 3rem;
+      max-width: 700px; margin: 3rem auto 0;
+    }
+    .service-card .section-label { color: #c8aa82; }
+    .service-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; font-weight: 300; margin-bottom: 1.5rem;
+    }
+    .service-card ul {
+      list-style: none; margin: 1.2rem 0 2rem;
+    }
+    .service-card ul li {
+      padding: 0.4rem 0;
+      padding-left: 1.2rem;
+      position: relative;
+      color: rgba(245,240,232,0.8); font-size: 0.95rem;
+    }
+    .service-card ul li::before {
+      content: '—'; position: absolute; left: 0; color: #c8aa82;
+    }
+    .price-block {
+      display: flex; align-items: baseline; gap: 0.5rem;
+      margin: 1.5rem 0 2rem;
+      border-top: 1px solid rgba(245,240,232,0.15);
+      padding-top: 1.5rem;
+    }
+    .price-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem; font-weight: 300; color: #c8aa82;
+    }
+    .price-label { color: rgba(245,240,232,0.6); font-size: 0.85rem; }
+    .service-meta { font-size: 0.82rem; color: rgba(245,240,232,0.5); margin-bottom: 2rem; }
+    .btn-light {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      border: 1px solid rgba(245,240,232,0.4);
+      color: var(--cream); text-decoration: none;
+      font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase;
+      transition: background 0.25s;
+    }
+    .btn-light:hover { background: rgba(245,240,232,0.1); }
+
+    /* ── PHILOSOPHY PILLARS ── */
+    .pillars {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 2rem; margin-top: 3rem;
+    }
+    .pillar {
+      padding: 1.8rem;
+      border: 1px solid var(--border);
+    }
+    .pillar-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; color: var(--border); line-height: 1;
+      margin-bottom: 0.8rem;
+    }
+    .pillar h4 {
+      font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 0.6rem; color: var(--accent);
+    }
+    .pillar p { font-size: 0.9rem; color: var(--stone); }
+
+    /* ── ABOUT ── */
+    #about blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 300; font-style: italic;
+      color: var(--accent); line-height: 1.4;
+      border-left: 2px solid var(--accent);
+      padding-left: 1.5rem;
+      margin: 2.5rem 0;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--warm-dark); color: var(--cream); }
+    #contact .section-title { color: var(--cream); }
+    #contact .section-label { color: #c8aa82; }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; margin-top: 3rem; align-items: start;
+    }
+    .contact-img img {
+      width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block;
+    }
+    .contact-info { color: rgba(245,240,232,0.75); }
+    .contact-info p { margin-bottom: 0.5rem; }
+    .contact-links { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.8rem; }
+    .contact-links a {
+      color: rgba(245,240,232,0.75); text-decoration: none;
+      font-size: 0.9rem; display: flex; align-items: center; gap: 0.7rem;
+      transition: color 0.2s;
+    }
+    .contact-links a:hover { color: #c8aa82; }
+    .contact-links .icon {
+      width: 1.2rem; text-align: center; opacity: 0.6;
+    }
+    .btn-tg {
+      display: inline-block; margin-top: 2.5rem;
+      padding: 0.9rem 2.4rem;
+      background: #c8aa82; color: var(--warm-dark);
+      text-decoration: none; font-size: 0.8rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 500; transition: opacity 0.2s;
+    }
+    .btn-tg:hover { opacity: 0.85; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 2rem;
+      font-size: 0.75rem; color: var(--stone);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 800px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-links { display: none; }
+      #home { grid-template-columns: 1fr; min-height: auto; padding-top: 6rem; gap: 2.5rem; }
+      .hero-image { display: none; }
+      .two-col, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .two-col-reverse { direction: ltr; }
+      section { padding: 3.5rem 1.2rem; }
+      #services .service-card { padding: 2rem 1.4rem; }
+    }
+  </style>
 </head>
-
 <body>
-    <nav class="nav-header">
-        <div class="nav-container">
-            <a href="#home" class="logo">Embodied Coaching</a>
-            <div class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#philosophy">Philosophy</a></li>
-                <li><a href="#resources">Resources</a></li>
-                <li><a href="#about">About me</a></li>
-                <li><a href="#contact" class="nav-cta">Contact</a></li>
-                <a href="../index.html" class="lang-toggle">Русский</a>
-            </ul>
-        </div>
-    </nav>
 
-    <div class="hero" id="home">
-        <div class="hero-content">
-            <h1>Awareness. Choice. Action.</h1>
-            <p>Our body creates certain possibilities for us in life — and limits others.
-            Embodiment coaching helps you clearly recognize what is truly your limitation, and where new freedom opens up for you.
-            <br><br>
-            Embodiment is awareness lived through the body.
-            It's not theory — it is your personal, somatic experience.</p>
-            <span class="emphasis">For those who are ready to notice, feel, regulate, choose, and transform — through the body and in the body.</span>
-        </div>
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#home">Embodied Coaching</a>
+  <ul class="nav-links">
+    <li><a href="#services">Session</a></li>
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="lang-switch" href="../index.html">Русский</a>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-text">
+    <p class="section-label">Embodiment Coaching</p>
+    <h1>Awareness.<br/><em>Choice.</em><br/>Action.</h1>
+    <p>Our body creates certain possibilities in life — and limits others. Embodiment coaching helps you clearly recognise what is truly your limitation, and where new freedom opens up for you.</p>
+    <p>Embodiment is awareness lived through the body. It's not theory — it is your personal, somatic experience.</p>
+    <a class="hero-cta" href="#services">Book a session</a>
+  </div>
+  <div class="hero-image">
+    <img src="../images/image_15_s.jpeg" alt="Embodied Coaching" />
+  </div>
+</section>
+
+<!-- SERVICE -->
+<section id="services">
+  <p class="section-label">Services</p>
+  <h2 class="section-title">Individual Session</h2>
+  <p class="section-body">One-on-one somatic coaching and nervous system support, tailored to your goals and needs.</p>
+
+  <div class="service-card">
+    <p class="section-label">Format · Online · 60 min</p>
+    <h3>Individual Coaching Session</h3>
+    <p style="color:rgba(245,240,232,0.7); font-size:0.95rem;">For you if you want to:</p>
+    <ul>
+      <li>feel safe in your body</li>
+      <li>restore energy and clarity</li>
+      <li>move from survival mode into conscious choice</li>
+      <li>regulate your nervous system and emotional flow</li>
+      <li>deepen your body connection and trust your sensations</li>
+    </ul>
+    <div class="price-block">
+      <span class="price-num">€20</span>
+      <span class="price-label">/ hour</span>
     </div>
+    <p class="service-meta">Online · Ljubljana or in-person by arrangement</p>
+    <a class="btn-light" href="#contact">Book a session</a>
+  </div>
+</section>
 
-    <div class="services-section" id="services">
-        <div class="section-header">
-            <div class="subtitle">Services</div>
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="two-col">
+    <div class="col-text">
+      <p class="section-label">Philosophy</p>
+      <h2 class="section-title">The body is<br/>the entry point</h2>
+      <div class="section-body">
+        <p>What we truly feel lives in the body. Embodiment is the union of body and mind, allowing you to experience yourself through somatic experience — not just through thinking.</p>
+        <p>Stress manifests primarily in the body — through muscle tension, breathing patterns, posture, and fatigue. Working with the body enables genuine change, not just insight.</p>
+        <p>Embodiment is not an abstract technique; it is a living experience that can be woven into everyday life. It is the HOW of how we inhabit each moment.</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-num">01</div>
+          <h4>Regulation</h4>
+          <p>Calming the nervous system and restoring inner resources.</p>
         </div>
-        <p class="emphasis">I offer individual coaching sessions and group programs, available in-person and online.</p>
-        <br>
-
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="label">Individual Session</div>
-                <br>
-                <div class="service-card-image">
-                    <img src="../images/image_15_s.jpeg" alt="image09">
-                    <p>One-on-one embodiment coaching tailored to your specific needs and goals.</p>
-                </div>
-
-                <div class="service-card-content">
-                    <div class="service-card-content-inner">
-                        <h3>Individual Coaching Session</h3>
-
-                        <p>Somatic Coaching & Nervous System Support</p>
-
-                        <p>For you if you want to:<br>
-                        • feel safe in your body<br>
-                        • restore energy and clarity<br>
-                        • move from survival into choice</p>
-
-                        <p>We focus on:<br>
-                        • Regulation - calming the nervous system<br>
-                        • Boundaries - staying true to yourself<br>
-                        • Emotional flow - feeling without overwhelm<br>
-                        • Body connection - trusting sensations<br>
-                        • Energy - what drains / what restores</p>
-
-                        <h4>Format:</h4>
-                        <p>60 min • Online</p>
-
-                        <h4>Pricing:<h4>
-                        <p>€70 / session<br>
-                        €180 / package of 3 sessions (paid upfront)</p>
-                        <h3><a href="#contact" class="cta-button">Book a session</a></h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <div class="label">Short Meeting</div>
-                <br>
-                <div class="service-card-image">
-                    <img src="../images/image_19_s.jpeg" alt="image07">
-                    <p>A brief focused session to address a specific question, practice, or challenge.</p>
-                </div>
-                <div class="service-card-content">
-                    <div class="service-card-content-inner">
-                        <h3>Short Consultation</h3>
-                        <p>Perfect for those already familiar with the method, who need quick feedback support with a specifi somaitc practice or assistance in an urgent situaiton.</p>
-                        <p>These shorter meetings offer flexibility and accessibility for ongoing support.</p>
-                        
-                        <h4>Format:</h4>
-                        <p>30 min • Online</p>
-
-                        <h4>Pricing:<h4>
-                        <p>€35 / session</p>
-                        <h3><a href="#contact" class="cta-button">Book a session</a></h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <div class="label">Embodiment in Groups</div>
-                <br>
-                <div class="service-card-image">
-                    <img src="../images/image_17_s.jpeg" alt="image05">
-                    <p>Experience embodiment work in a supportive group setting.</p>
-                </div>
-                <div class="service-card-content">
-                    <div class="service-card-content-inner">
-                        <h3>Group Programs</h3>
-                        <p>These programs combine guided practices, shared experiences, and collective learning to deepen your somatic awareness.</p>
-                        <p>Group work offers the unique benefit of witnessing others' journeys while exploring your own, creating a rich environment for growth and connection.</p>
-                        
-                        <h4>Format:</h4>
-                        <p>1 - 2 hours / Online</p>
-
-                        <h4>Pricing:<h4>
-                        <p>€15 per person / 6 - 8 participants / online<br>
-                        €25 per person / 6 - 8 participants / in person<br>
-
-                        For larger groups, pricing depends on the rental cost of the space.</p>
-                        <h3><a href="#contact" class="cta-button">Book a session</a></h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <div class="label">For Couples</div>
-                <br>
-                <div class="service-card-image">
-                        <img src="../images/image_18_s.jpeg" alt="image10">
-                        <p>A gentle embodiment-based practice designed for couples.</p>
-                </div>
-                <div class="service-card-content">
-                    <div class="service-card-content-inner">
-                        <h3>💞 Couples Embodiment Practice</h3>
-                        <p>A gentle embodiment-based practice designed for couples who wish to reconnect, soften, and rediscover their natural intimacy.</p>
-
-                        <p>This session is for you if you feel that warmth has faded, connection has become less alive, or you long for a deeper presence with one another.</p>
-                        <p>Instead of analyzing or trying to “fix” anything, you explore your connection through breath, attention, and embodied awareness.</p>
-                        
-                        <h4>Format:</h4>
-                        <p>60 min</p>
-
-                        <h4>Pricing:<h4>
-                        <p>€100 per session</p>
-                    <h3><a href="#contact" class="cta-button">Book a session</a></h3>
-                    </div>
-                </div>
-            </div>
+        <div class="pillar">
+          <div class="pillar-num">02</div>
+          <h4>Boundaries</h4>
+          <p>Staying true to yourself without losing connection with others.</p>
         </div>
-    </div> 
-
-    <div class="philosophy-section" id="philosophy">
-        <div class="philosophy-content">
-            <div class="section-header">
-                <div class="subtitle">Philosophy</div>
-            </div>
-            <p class="closing">What we truly feel lives in the body.<br>
-            This is where embodiment work begins.</p>
+        <div class="pillar">
+          <div class="pillar-num">03</div>
+          <h4>Presence</h4>
+          <p>Trusting sensations and feeling without overwhelm.</p>
         </div>
-
-        <br>
-
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="label">Why Body?</div>
-                <br>
-                <div class="service-card-image">
-                    <img src="../images/image_11_s.jpeg" href="#contact" alt="image11">
-                    <p>Embodiment is the union of body and mind, allowing you to experience yourself through your somatic experience, not just through thinking.</p>
-                </div>
-                <div class="service-card-content">
-                    <div class="service-card-content-inner">
-                        <h3><a href="./philosophy.html#whybody" class="cta-button">Learn more</a></h3>
-                    </div>
-                </div>            
-            </div>
-
-            <div class="service-card">
-                <div class="label">Somatic Awareness in Daily Life</div>
-                <br>
-                <div class="service-card-image">
-                    <img src="../images/image_23_s.jpeg" alt="image23">
-                    <p>Embodiment is not an abstract technique. It is a living experience that can be integrated into everyday life.</p>
-                </div>
-                <div class="service-card-content">
-                    <div class="service-card-content-inner">
-                        <h3><a href="./philosophy.html#somaticawareness" class="cta-button">Learn more</a></h3>
-                    </div>
-                </div>  
-            </div>
-
-            <div class="service-card">
-                <div class="label">Stress and the Body<br>Why Embodiment Helps?</div>
-                <br>
-                <div class="service-card-image">
-                    <img src="../images/image_12_s.jpeg" alt="image12">
-                    <p>Stress manifests primarily in the body - through muscle tension, breathing patterns, posture, and fatigue.</p>
-                </div>
-                <div class="service-card-content">
-                    <div class="service-card-content-inner">
-                        <h3><a href="./philosophy.html#stressandbody" class="cta-button">Learn more</a></h3>
-                    </div>
-                </div> 
-            </div>
-
-            <div class="service-card">
-                <div class="label">Resource Accounting<br>Embodiment is the HOW</div>
-                <br>
-                <div class="service-card-image">
-                        <img src="../images/image_22_s.jpeg" alt="image22">
-                        <p>Embodiment is not a theory.<br>It is your personal, lived somatic experience.</p>
-                </div>
-                <div class="service-card-content">
-                    <div class="service-card-content-inner">
-                        <h3><a href="./philosophy.html#resourceaccounting" class="cta-button">Learn more</a></h3>
-                    </div>
-                </div> 
-            </div>
-        </div>
+      </div>
     </div>
-
-
-    <div class="free-resources" id="resources">
-        <div class="section-header">
-            <div class="subtitle">Free Resources</div>
-            <h2>Begin Your Journey</h2>
-        </div>
-        <div class="resources-grid">
-            <div class="resource-card" data-link="https://digitalwellbeing.org/wp-content/uploads/2015/11/2010-Embodiment-as-a-unifying-perspective-for-psychology.pdf">
-                <h4>Embodiment as a Unifying Perspective for Psychology</h4>
-                <p>Psychological processes across cognition, emotion, and behavior are shaped by the body's sensory, motor, and emotional systems, offering a framework to unify diverse areas of psychology.</p>
-            </div>
-            <div class="resource-card" data-link="https://emilygibsontherapy.com/embodiment-resources-emily-gibson-ms-lpcc">
-                <h4>Embodiment Resources & Blogs by Emily Gibson</h4>
-                <p>Free articles on embodiment concepts, self-awareness practices, and mind-body connection from an occupational therapy lens.</p>
-            </div>
-            <div class="resource-card" data-link="https://monoskop.org/images/2/21/Varela_Thompson_Rosch_The_Embodied_Mind_Cognitive_Science_and_Human_Experience_1991.pdf">
-                <h4>The Embodied Mind: Cognitive Science and Human Experience</h4>
-                <p>An interdisciplinary account of cognition that combines cognitive science, phenomenology, and Buddhist philosophy to show how mind and experience emerge from embodied, situated action rather than abstract mental representations.</p>
-            </div>
-        </div>
+    <div class="col-image">
+      <img src="../images/image_11_s.jpeg" alt="Philosophy of embodiment" />
     </div>
+  </div>
+</section>
 
-    <div class="featured-program" id="about">
-        <div class="featured-content">
-            <div class="section-header">
-                <div class="subtitle">About Me</div>
-            </div>
-            <img src="../images/image_13_s.jpeg" alt="Mila" class="featured-image">
-            <p>Hello, my name is Mila, and I am an Embodiment Coach.</p>
-            <h3>My professional strength lies in my ability  to see a person in all their multifaceted aspects and to choose embodiment practices for their goals.</h3> 
-            <br>
-            <p>In my previous career, I worked for 10 years in Moscow as a structural design engineer, part of a team of professionals developing complex and unique architectural projects. Deadlines, long hours, exhaustion, stress, burnout, and the feeling of having no inner resources for a full, meaningful life were all very familiar to me.<br><br>
-I also carry the experience of supporting my mother through cancer treatment — and through her full and successful recovery.<br>
-I know firsthand what it means to move to another country, to navigate 10 years of living and integrating into a new culture, and to support my family through the challenges of adaptation.<br><br>
-Like many people during the pandemic, I found myself searching for new meaning and new directions. I went through retraining, a divorce with an emphasis on preserving respectful co-parenting, long periods of not being able to see my family in Russia, financial instability, working in a foreign language with only one day off per week, and the loss of important relationships.<br><br>
-All of these events were lived through the body.<br>
-And my path would not have been so consciously navigated without various studies and trainings — in general psychology, psychosomatics, hypnosis, and multiple embodiment- and body-based practices.<br><br>
-I can say with certainty: every state we experience — sorrow or joy — is directly reflected in the body. This is our nature.<br>
-But learning how to consciously choose how we want to live through each life experience — this is a skill we can cultivate, and one that deeply matters.<br><br>
-An embodiment coach is someone who works through the body's attention.<br>
-I invite you into a deeply interesting and meaningful exploration of yourself.</p>
-        </div>
-    </div>    
-
-    <div class="contact-section" id="contact">
-        <div class="contact-content">
-            <div class="section-header">
-                <div class="subtitle">Contact / Book a Session</div>
-            </div>
-            <div class="contact-info">
-                <p>Mila Poletavkina</p>
-                <img src="../images/image_14.jpeg" alt="contact_mila" class="contact-image">
-
-                <p><i class="fa-solid fa-location-dot"></i>   Ljubliana / online</p>
-                <br>
-            </div>
-        </div>
-
-
-        <div class="button-group">
-            <!-- Email Button -->
-            <a href="mailto:mila.poletavkina@gmail.com" class="contact-button email-btn" data-tooltip="Email">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                </svg>
-            </a>
-
-            <!-- Telegram Button -->
-            <a href="https://t.me/milasession" target="_blank" rel="noopener noreferrer" class="contact-button telegram-btn" data-tooltip="Telegram">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
-                </svg>
-            </a>
-
-            <!-- WhatsApp Button -->
-            <a href="https://wa.me/79629556409" target="_blank" rel="noopener noreferrer" class="contact-button whatsapp-btn" data-tooltip="WhatsApp">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                </svg>
-            </a>
-            <!-- VKontakte Button -->
-            <a href="https://vk.com/id122408293" target="_blank" rel="noopener noreferrer" class="contact-button vk-btn" data-tooltip="VKontakte">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.183 14.285h-1.38c-.48 0-.625-.384-1.485-1.264-.75-.735-1.08-.826-1.26-.826-.27 0-.345.075-.345.435v1.155c0 .315-.09.495-1.005.495-1.485 0-3.135-.9-4.29-2.58-1.725-2.46-2.196-4.32-2.196-4.695 0-.18.075-.345.435-.345h1.38c.33 0 .45.15.57.495.675 1.98 1.8 3.72 2.265 3.72.165 0 .255-.075.255-.495v-1.935c-.06-.99-.585-1.08-.585-1.425 0-.135.12-.27.3-.27h2.16c.27 0 .375.15.375.48v2.61c0 .27.12.375.21.375.165 0 .3-.105.6-.405 1.11-1.245 1.905-3.165 1.905-3.165.105-.21.255-.345.585-.345h1.38c.405 0 .495.21.405.495-.18.885-1.92 3.51-1.92 3.51-.135.225-.18.33 0 .585.135.195.57.555 0.855.885.555.615 0.99 1.125 1.095 1.485.12.36-.075.54-.48.54z"/>
-                </svg>
-            </a>
-        </div>
-        <br>
-
-        <a href="https://t.me/milasession" class="cta-button">Contact me on Telegram</a>
-
+<!-- ABOUT -->
+<section id="about">
+  <div class="two-col two-col-reverse">
+    <div class="col-image">
+      <img src="../images/image_13_s.jpeg" alt="Mila Poletavkina" />
     </div>
+    <div class="col-text">
+      <p class="section-label">About me</p>
+      <h2 class="section-title">Mila<br/>Poletavkina</h2>
+      <blockquote>My professional strength lies in seeing a person in all their multifaceted aspects and choosing embodiment practices for their goals.</blockquote>
+      <div class="section-body">
+        <p>In my previous career I worked for 10 years in Moscow as a structural design engineer. Deadlines, burnout, and the feeling of having no inner resources for a full, meaningful life were all very familiar to me.</p>
+        <p>I know firsthand what it means to move to another country, navigate years of integration into a new culture, and support loved ones through life's most demanding chapters — all of it lived through the body.</p>
+        <p>My path through general psychology, psychosomatics, and body-based practices led me to embodiment coaching. Every state we experience — sorrow or joy — is directly reflected in the body. Learning how to consciously choose how we live through each experience is a skill we can cultivate, and one that deeply matters.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <footer>
-        <p>&copy; 2025 Mila Poletavkina. Embodied Coaching Practice. All rights reserved.</p>
-    </footer>
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Contact · Book a session</p>
+  <h2 class="section-title">Get in touch</h2>
+  <div class="contact-grid">
+    <div class="contact-img">
+      <img src="../images/image_14.jpeg" alt="Mila Poletavkina — contact" />
+    </div>
+    <div class="contact-info">
+      <p style="font-size:1.05rem; margin-bottom:1rem; color:rgba(245,240,232,0.9);">Mila Poletavkina<br/>Ljubljana / online</p>
+      <p>I'd love to answer your questions and find a time for a session together.</p>
+      <div class="contact-links">
+        <a href="mailto:mila.poletavkina@gmail.com">
+          <span class="icon">✉</span> mila.poletavkina@gmail.com
+        </a>
+        <a href="https://t.me/milasession" target="_blank" rel="noopener">
+          <span class="icon">✈</span> Telegram: @milasession
+        </a>
+        <a href="https://wa.me/79629556409" target="_blank" rel="noopener">
+          <span class="icon">◎</span> WhatsApp
+        </a>
+        <a href="https://vk.com/id122408293" target="_blank" rel="noopener">
+          <span class="icon">◈</span> VKontakte
+        </a>
+      </div>
+      <a class="btn-tg" href="https://t.me/milasession" target="_blank" rel="noopener">Contact me on Telegram</a>
+    </div>
+  </div>
+</section>
 
-    <script src="../script.js"></script>
+<footer>
+  © 2025 Mila Poletavkina. Embodied Coaching Practice. All rights reserved.
+</footer>
 
 </body>
 </html>
