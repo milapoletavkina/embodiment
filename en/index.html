@@ -41,18 +41,18 @@
     }
     .nav-logo {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem; font-weight: 400; letter-spacing: 0.04em;
+      font-size: 1.4rem; font-weight: 400; letter-spacing: 0.04em;
       text-decoration: none; color: var(--warm-dark);
     }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
       text-decoration: none; color: var(--stone);
-      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+      font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase;
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--accent); }
     .lang-switch {
-      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--stone); text-decoration: none; border-bottom: 1px solid var(--border);
       padding-bottom: 1px; transition: color 0.2s;
     }
@@ -67,24 +67,26 @@
     }
     .hero-text h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      font-size: clamp(3rem, 5.5vw, 4.8rem);
       font-weight: 300; line-height: 1.15;
       margin-bottom: 2rem; letter-spacing: 0.01em;
+      padding-left: 10px;
     }
     .hero-text h1 em { font-style: italic; color: var(--accent); }
-    .hero-text p { color: var(--stone); font-size: 1rem; max-width: 42ch; margin-bottom: 1.2rem; }
+    .hero-text p { color: var(--stone); font-size: 1.15rem; max-width: 42ch; margin-bottom: 1.2rem; padding-left: 10px; }
     .hero-cta {
       display: inline-block; margin-top: 1.5rem;
-      padding: 0.85rem 2.2rem;
+      padding: 0.9rem 2.4rem;
       border: 1px solid var(--accent);
       color: var(--accent); text-decoration: none;
-      font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase;
+      font-size: 0.9rem; letter-spacing: 0.14em; text-transform: uppercase;
       transition: background 0.25s, color 0.25s;
+      margin-left: 10px;
     }
     .hero-cta:hover { background: var(--accent); color: var(--cream); }
     .hero-image { position: relative; }
     .hero-image img {
-      width: 100%; aspect-ratio: 3/4; object-fit: cover;
+      width: 80%; aspect-ratio: 3/4; object-fit: cover;
       display: block;
     }
     .hero-image::before {
@@ -94,31 +96,32 @@
     }
 
     /* ── SECTIONS ── */
-    section { padding: var(--section-gap) 2.5rem; }
+    section { padding: var(--section-gap) 2.5rem var(--section-gap) calc(2.5rem + 10px); }
     section + section { border-top: 1px solid var(--border); }
 
     .section-label {
-      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 1.2rem;
+      font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.2rem; padding-left: 10px;
     }
     .section-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
       font-weight: 300; line-height: 1.2;
-      margin-bottom: 2rem;
+      margin-bottom: 2rem; padding-left: 10px;
     }
-    .section-body { color: var(--stone); max-width: 68ch; }
+    .section-body { color: var(--stone); max-width: 68ch; font-size: 1.1rem; padding-left: 10px; }
     .section-body p + p { margin-top: 1rem; }
 
     /* ── TWO-COL LAYOUT ── */
     .two-col {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 4rem; align-items: start;
+      padding-left: 10px;
     }
     .two-col-reverse { direction: rtl; }
     .two-col-reverse > * { direction: ltr; }
     .col-image img {
-      width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block;
+      width: 80%; aspect-ratio: 4/5; object-fit: cover; display: block;
     }
 
     /* ── SERVICE CARD ── */
@@ -126,11 +129,12 @@
       background: var(--warm-dark); color: var(--cream);
       padding: 3rem;
       max-width: 700px; margin: 3rem auto 0;
+      margin-left: calc(50% - 350px + 10px);
     }
     .service-card .section-label { color: #c8aa82; }
     .service-card h3 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem; font-weight: 300; margin-bottom: 1.5rem;
+      font-size: 2.1rem; font-weight: 300; margin-bottom: 1.5rem;
     }
     .service-card ul {
       list-style: none; margin: 1.2rem 0 2rem;
@@ -139,7 +143,7 @@
       padding: 0.4rem 0;
       padding-left: 1.2rem;
       position: relative;
-      color: rgba(245,240,232,0.8); font-size: 0.95rem;
+      color: rgba(245,240,232,0.8); font-size: 1.05rem;
     }
     .service-card ul li::before {
       content: '—'; position: absolute; left: 0; color: #c8aa82;
@@ -152,16 +156,16 @@
     }
     .price-num {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem; font-weight: 300; color: #c8aa82;
+      font-size: 3.2rem; font-weight: 300; color: #c8aa82;
     }
-    .price-label { color: rgba(245,240,232,0.6); font-size: 0.85rem; }
-    .service-meta { font-size: 0.82rem; color: rgba(245,240,232,0.5); margin-bottom: 2rem; }
+    .price-label { color: rgba(245,240,232,0.6); font-size: 0.95rem; }
+    .service-meta { font-size: 0.92rem; color: rgba(245,240,232,0.5); margin-bottom: 2rem; }
     .btn-light {
       display: inline-block;
-      padding: 0.85rem 2.2rem;
+      padding: 0.9rem 2.4rem;
       border: 1px solid rgba(245,240,232,0.4);
       color: var(--cream); text-decoration: none;
-      font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase;
+      font-size: 0.9rem; letter-spacing: 0.14em; text-transform: uppercase;
       transition: background 0.25s;
     }
     .btn-light:hover { background: rgba(245,240,232,0.1); }
@@ -181,15 +185,15 @@
       margin-bottom: 0.8rem;
     }
     .pillar h4 {
-      font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
+      font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase;
       margin-bottom: 0.6rem; color: var(--accent);
     }
-    .pillar p { font-size: 0.9rem; color: var(--stone); }
+    .pillar p { font-size: 1rem; color: var(--stone); }
 
     /* ── ABOUT ── */
     #about blockquote {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem; font-weight: 300; font-style: italic;
+      font-size: 1.75rem; font-weight: 300; font-style: italic;
       color: var(--accent); line-height: 1.4;
       border-left: 2px solid var(--accent);
       padding-left: 1.5rem;
@@ -203,27 +207,28 @@
     .contact-grid {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 4rem; margin-top: 3rem; align-items: start;
+      padding-left: 10px;
     }
     .contact-img img {
-      width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block;
+      width: 80%; aspect-ratio: 4/5; object-fit: cover; display: block;
     }
     .contact-info { color: rgba(245,240,232,0.75); }
     .contact-info p { margin-bottom: 0.5rem; }
     .contact-links { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.8rem; }
     .contact-links a {
       color: rgba(245,240,232,0.75); text-decoration: none;
-      font-size: 0.9rem; display: flex; align-items: center; gap: 0.7rem;
+      font-size: 1rem; display: flex; align-items: center; gap: 0.7rem;
       transition: color 0.2s;
     }
     .contact-links a:hover { color: #c8aa82; }
     .contact-links .icon {
-      width: 1.2rem; text-align: center; opacity: 0.6;
+      width: 1.3rem; text-align: center; opacity: 0.6;
     }
     .btn-tg {
       display: inline-block; margin-top: 2.5rem;
-      padding: 0.9rem 2.4rem;
+      padding: 0.95rem 2.5rem;
       background: #c8aa82; color: var(--warm-dark);
-      text-decoration: none; font-size: 0.8rem;
+      text-decoration: none; font-size: 0.9rem;
       letter-spacing: 0.14em; text-transform: uppercase;
       font-weight: 500; transition: opacity 0.2s;
     }
@@ -232,7 +237,7 @@
     /* ── FOOTER ── */
     footer {
       text-align: center; padding: 2rem;
-      font-size: 0.75rem; color: var(--stone);
+      font-size: 0.85rem; color: var(--stone);
       border-top: 1px solid var(--border);
     }
 
@@ -370,16 +375,20 @@
       <p>I'd love to answer your questions and find a time for a session together.</p>
       <div class="contact-links">
         <a href="mailto:mila.poletavkina@gmail.com">
-          <span class="icon">✉</span> mila.poletavkina@gmail.com
+          <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          mila.poletavkina@gmail.com
         </a>
         <a href="https://telegram.me/milasession" target="_blank" rel="noopener">
-          <span class="icon">✈</span> Telegram: @milasession
+          <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="m22 2-7 20-4-9-9-4z"/></svg>
+          Telegram: @milasession
         </a>
         <a href="https://wa.me/79629556409" target="_blank" rel="noopener">
-          <span class="icon">◎</span> WhatsApp
+          <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          WhatsApp
         </a>
         <a href="https://vk.com/id122408293" target="_blank" rel="noopener">
-          <span class="icon">◈</span> VKontakte
+          <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.391 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.12-5.335-3.202-2.168-3.042-2.763-5.32-2.763-5.778 0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.678.864 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.204.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.254-1.406 2.15-3.574 2.15-3.574.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.78 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.491-.085.744-.576.744z"/></svg>
+          VKontakte
         </a>
       </div>
       <a class="btn-tg" href="https://telegram.me/milasession" target="_blank" rel="noopener">Contact me on Telegram</a>
